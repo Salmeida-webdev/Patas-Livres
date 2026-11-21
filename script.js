@@ -5,9 +5,9 @@
   const current = document.querySelector('#slide-current');
   const captions = [
     'Cada vida merece cuidado e respeito.',
-    'Acolher também é transformar.',
-    'Saúde e bem-estar para cada gato.',
-    'Um novo começo pode mudar tudo.',
+    'Um espaço seguro começa com respeito.',
+    'Atenção e bem-estar para cada gato.',
+    'Cada história merece novos caminhos.',
     'Proteção animal com dignidade.'
   ];
   let activeIndex = 0;
