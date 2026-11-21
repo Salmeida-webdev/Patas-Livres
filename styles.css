@@ -515,3 +515,12 @@ h1, h2, h3, p { overflow-wrap: anywhere; }
   .story-caption { min-height: auto; padding: 13px 15px 17px; }
   .story-caption h3 { font-size: 16px; }
 }
+
+/* Interação e ordem mobile do carrossel principal. */
+.hero-photo-wrap { touch-action: pan-y; }
+@media (max-width: 760px) {
+  .hero-shell { grid-template-columns: minmax(0, 1fr); gap: 27px; padding-top: 30px; }
+  .hero-visual { grid-row: 1; width: 100%; }
+  .hero-copy { grid-row: 2; width: 100%; }
+  .hero-photo-frame { width: 100%; }
+}

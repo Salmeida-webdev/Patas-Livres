@@ -4,6 +4,7 @@
   const caption = document.querySelector('#slide-caption');
   const current = document.querySelector('#slide-current');
   const carousel = document.querySelector('.hero-photo-frame');
+  const swipeArea = carousel.querySelector('.hero-photo-wrap');
   const captions = [
     'Cada vida merece cuidado e respeito.',
     'Água limpa e atenção todos os dias.',
@@ -45,15 +46,44 @@
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let autoplayTimer = null;
   const stopAutoplay = () => { window.clearInterval(autoplayTimer); autoplayTimer = null; };
+  let resumeTimer = null;
+  const resumeAutoplaySoon = () => {
+    window.clearTimeout(resumeTimer);
+    resumeTimer = window.setTimeout(startAutoplay, 850);
+  };
   const startAutoplay = () => {
     if (reduceMotion || autoplayTimer || document.hidden) return;
     autoplayTimer = window.setInterval(() => showSlide(activeIndex + 1), 6500);
   };
-  carousel.addEventListener('mouseenter', stopAutoplay);
-  carousel.addEventListener('mouseleave', startAutoplay);
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (finePointer) {
+    carousel.addEventListener('mouseenter', stopAutoplay);
+    carousel.addEventListener('mouseleave', startAutoplay);
+  }
   carousel.addEventListener('focusin', stopAutoplay);
   carousel.addEventListener('focusout', event => {
     if (!carousel.contains(event.relatedTarget)) startAutoplay();
+  });
+  let swipeStart = null;
+  swipeArea.addEventListener('pointerdown', event => {
+    if (event.pointerType !== 'touch' && event.pointerType !== 'pen') return;
+    swipeStart = { x: event.clientX, y: event.clientY, id: event.pointerId };
+    stopAutoplay();
+    try { swipeArea.setPointerCapture(event.pointerId); } catch {}
+  });
+  swipeArea.addEventListener('pointerup', event => {
+    if (!swipeStart || swipeStart.id !== event.pointerId) return;
+    const deltaX = event.clientX - swipeStart.x;
+    const deltaY = event.clientY - swipeStart.y;
+    if (Math.abs(deltaX) >= 44 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
+      showSlide(activeIndex + (deltaX < 0 ? 1 : -1));
+    }
+    swipeStart = null;
+    resumeAutoplaySoon();
+  });
+  swipeArea.addEventListener('pointercancel', () => {
+    swipeStart = null;
+    resumeAutoplaySoon();
   });
   document.addEventListener('visibilitychange', () => document.hidden ? stopAutoplay() : startAutoplay());
   startAutoplay();
