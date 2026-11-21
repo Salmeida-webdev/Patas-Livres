@@ -628,3 +628,65 @@ h1, h2, h3, p { overflow-wrap: anywhere; }
   .partners-section::after { right: -55px; bottom: -48px; width: 220px; height: 160px; opacity: .1; }
   .closing-cta::after { width: 190px; opacity: .14; }
 }
+
+/* Distribuição ampliada das patinhas também nas superfícies claras. */
+.facts-strip::after,
+.value-card::after,
+.action-card::after,
+.story-caption::after,
+.adoption-copy::after,
+.partners-section::after {
+  background-image: url("assets/patinhas-trilha-sage.png");
+  opacity: .34;
+}
+.action-card-dark::after { opacity: .2; }
+.section-intro { position: relative; overflow: hidden; }
+.section-intro::after {
+  position: absolute;
+  top: 42%;
+  right: -24px;
+  width: 210px;
+  height: 152px;
+  background: url("assets/patinhas-trilha-sage.png") center / contain no-repeat;
+  content: "";
+  opacity: .26;
+  pointer-events: none;
+}
+.section-intro > * { position: relative; z-index: 1; }
+.hero-copy { isolation: isolate; }
+.hero-copy::after {
+  position: absolute;
+  right: -24px;
+  bottom: 14px;
+  width: 128px;
+  height: 92px;
+  background: url("assets/patinhas-trilha-sage.png") center / contain no-repeat;
+  content: "";
+  opacity: .22;
+  pointer-events: none;
+  z-index: -1;
+}
+.site-footer { position: relative; overflow: hidden; }
+.site-footer::after {
+  position: absolute;
+  right: -38px;
+  bottom: -54px;
+  width: 220px;
+  height: 160px;
+  background: url("assets/patinhas-trilha-sage.png") center / contain no-repeat;
+  content: "";
+  opacity: .28;
+  pointer-events: none;
+}
+.site-footer > * { position: relative; z-index: 1; }
+@media (max-width: 760px) {
+  .section-intro::after { top: auto; right: -38px; bottom: 5px; width: 150px; height: 110px; opacity: .22; }
+  .hero-copy::after { right: -10px; bottom: 5px; width: 92px; height: 66px; opacity: .18; }
+  .facts-strip::after,
+  .value-card::after,
+  .action-card::after,
+  .story-caption::after,
+  .adoption-copy::after,
+  .partners-section::after { opacity: .29; }
+  .site-footer::after { right: -48px; bottom: -44px; width: 170px; height: 124px; opacity: .22; }
+}
