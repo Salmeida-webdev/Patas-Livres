@@ -11,7 +11,11 @@ Abra `index.html` em um navegador ou sirva a pasta com qualquer servidor estáti
 - `index.html`: conteúdo semântico e seções do site
 - `styles.css`: identidade visual, layout responsivo e estados de interação
 - `script.js`: carrossel acessível e menu móvel
-- `assets/`: logotipo aprovado, fotos fornecidas para apresentação e ícone rasterizado do WhatsApp
+- `assets/`: logotipo aprovado, fotografias ilustrativas geradas para apresentação e ícone rasterizado do WhatsApp
+
+## Imagens
+
+As doze fotografias de gatos foram geradas para fins ilustrativos e padronizadas em WebP, com uso no carrossel e na galeria. Elas não representam registros dos animais da unidade.
 
 ## Observações de conteúdo
 
